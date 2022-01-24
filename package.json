@@ -1,0 +1,20 @@
+{
+  "name": "src/Instituto",
+  "version": "1.0.0",
+  "description": "Trabajo Final Programador Web Inicial - Aplicación web para contacto con el desarrollador",
+  "author": "Juan Pablo Ocampo Rombolá <juanp.ocampo@hotmail.com>",
+  "keywords": [],
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "start": "./bin/app",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "http-errors": "^2.0.0",
+    "pino": "^7.6.4",
+    "pino-http": "^6.6.0",
+    "pino-pretty": "^7.5.0"
+  }
+}
