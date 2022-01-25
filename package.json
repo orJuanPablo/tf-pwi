@@ -1,20 +1,31 @@
 {
-  "name": "src/Instituto",
+  "name": "tf-pwi",
   "version": "1.0.0",
-  "description": "Trabajo Final Programador Web Inicial - Aplicación web para contacto con el desarrollador",
-  "author": "Juan Pablo Ocampo Rombolá <juanp.ocampo@hotmail.com>",
-  "keywords": [],
-  "license": "MIT",
-  "main": "index.js",
+  "description": "Trabajo Final Programador Web Inicial - Formulario de contacto con el desarrollador",
+  "main": "app.js",
   "scripts": {
-    "start": "./bin/app",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanPocampo/tf-pwi.git"
+  },
+  "author": "Ocampo Rombolá Juan Pablo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/juanPocampo/tf-pwi/issues"
+  },
+  "homepage": "https://github.com/juanPocampo/tf-pwi#readme",
   "dependencies": {
+    "dotenv": "^14.3.0",
     "express": "^4.17.2",
-    "http-errors": "^2.0.0",
-    "pino": "^7.6.4",
-    "pino-http": "^6.6.0",
-    "pino-pretty": "^7.5.0"
+    "knex": "^1.0.1",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
