@@ -1,0 +1,39 @@
+<form action="" method="post">
+    <legend>Crear Registro</legend>
+    <div>     
+            {{{val}}}
+    </div>
+    <fieldset>
+        <div class="form-floating mb-2">
+            <input class="form-control" type="text" name="nombre" value={{nombreForm}}>
+            <label for="name">Nombre</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input class="form-control" type="text" name="apellido" value={{apellidoForm}}>
+            <label for="apellido">Apellido</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input class="form-control" type="text" name="email" value={{emailForm}}>
+            <label for="e-mail">E-mail</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input class="form-control" type="text" name="tel" value={{telForm}}>
+            <label for="tel">Télefono</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input class="form-control" type="text" name="prov" value={{provForm}}>
+            <label for="prov">Provincia</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input class="form-control" type="text" name="loc" value={{locForm}}>
+            <label for="loc">Localidad</label>
+        </div>
+        <div class="form-floating mb-2">
+            <input class="form-control" type="text" name="comentario" value={{comForm}}>
+            <label for="com">Comentario</label>
+        </div>
+        <div>
+            <input class="btn-info" type="submit" value="Enviar Datos">
+        </div>
+    </fieldset>
+</form>
