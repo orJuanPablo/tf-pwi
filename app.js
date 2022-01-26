@@ -3,6 +3,7 @@ const res = require("express/lib/response");
 require("dotenv").config();
 const app = express();
 const port = process.env.DEFAULT_PORT || 3000;
+const host = process.env.DEFAULT_HOST || "http://localhost";
 const hbs = require("hbs");
 const path = require("path");
 
@@ -13,16 +14,16 @@ app.use(express.urlencoded({ extended: false }));
 
 //! RUTEO
 app.use("/home", require("./src/routes/home")); //TODO
-//app.use("/messages", require("./src/routes/message")); //TODO
-//app.use("/contact", require("./src/routes/contact")); //TODO
+//app.use("/messages", require("./routes/message")); //TODO
+//app.use("/contact", require("./routes/contact")); //TODO
 
 //! HANDLEBARS CONFIG
 app.set("view engine", "hbs");
-app.set("views", path.join(__dirname, "views"));
-hbs.registerPartials(path.join(__dirname, "views/partials"));
+app.set("views", path.join(__dirname, "src/views"));
+hbs.registerPartials(path.join(__dirname, "src/views/partials"));
 
 app.listen(port, () => {
-  console.log(`SERVER LISTEN ON PORT ${port}`);
+  console.log(`SERVER LISTEN AT ${host}:${port}`);
 });
 app.on("error", (err) => {
   console.error(`THERE WAS AN ERROR: ${err}`);
