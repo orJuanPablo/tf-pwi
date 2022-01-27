@@ -1,0 +1,75 @@
+<div class="container-fluid col-4">
+  <form action="/contacto" method="post">
+    <h1>Contacto</h1>
+    <fieldset>
+      <legend>Datos de contacto</legend>
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Ingrese su nombre..."
+        />
+      </div>
+      <div class="mb-3">
+        <label for="last_name" class="form-label">Apellido</label>
+        <input
+          type="text"
+          class="form-control"
+          id="last_name"
+          placeholder="Ingrese su apellido..."
+        />
+      </div>
+      <div class="mb-3">
+        <label for="tel" class="form-label">Télefono</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tel"
+          placeholder="Ingrese su Télefono con el formato +54 380 1234567"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input
+          type="text"
+          class="form-control"
+          id="E-mail"
+          placeholder="Ingrese su email..."
+        />
+      </div>
+
+    </fieldset>
+    <fieldset>
+      <legend>Datos de oferta</legend>
+      <div class="mb-3">
+        <select class="form-select" aria-label="Tipo de oferta">
+          <option selected>Elija una opción</option>
+          <option value="1">Puesto de trabajo</option>
+          <option value="2">Desarrollo freelance</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="company_name" class="form-label">Nombre de la empresa</label>
+        <input
+          type="text"
+          class="form-control"
+          id="company_name"
+          placeholder="Ingrese el nombre de su empresa..."
+        />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Descripción</label>
+        <input
+          type="text"
+          class="form-control"
+          id="descriptsion"
+          placeholder="Ingrese una breve descripción del trabajo..."
+        />
+      </div>
+    </fieldset>
+    <input type="submit" value="Enviar" class="btn-primary" />
+    <input type="button" value="Cancelar" class="btn-danger" />
+  </form>
+</div>
