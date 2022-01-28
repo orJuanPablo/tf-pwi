@@ -16,6 +16,7 @@ knex.schema.hasTable("ofertas").then(function (exists) {
       .createTable("ofertas", function (t) {
         t.increments("id").primary();
         t.integer("contacto", 11);
+        t.integer("tipo", 1);
         t.string("descripcion", 250);
       })
       .then(() => console.log("success!! table: ofertas has ben created"))

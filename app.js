@@ -13,8 +13,8 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
 //! RUTEO
-app.use("/home", require("./src/routes/home")); //TODO
-//app.use("/messages", require("./routes/message")); //TODO
+app.use("/home", require("./src/routes/home"));
+app.use("/ofertas", require("./src/routes/oferta")); //TODO
 //app.use("/contact", require("./routes/contact")); //TODO
 
 //! HANDLEBARS CONFIG
