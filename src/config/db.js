@@ -41,3 +41,4 @@ knex.schema.hasTable("contactos").then(function (exists) {
       });
   }
 });
+module.exports = knex;
