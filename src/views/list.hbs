@@ -1,9 +1,13 @@
-<div class="container">
-  <div class="row data-masonry='true'">
-      {{#each data}}
-      <div class="col-6">
-          <p class="h4">{{id}} -{{apellido}}, {{nombre}} - {{direccion}}</p>
+<div class="container-fluid">
+  {{#each data}}
+    <div class="card col-4">
+      <div class="card-header bg-primary">
+        <h5 class="card-title text-white">{{company_name}} </h5></div>
+      <div class="card-body">
+        <p class="card-text h6">{{last_name}}, {{name}} </p>
+        <p class="card-text h6">{{email}} - {{tel}}</p>
+        <p class="card-text">{{descripcion}}</p>
       </div>
-      {{/each}}
-  </div>
+    </div>
+  {{/each}}
 </div>
