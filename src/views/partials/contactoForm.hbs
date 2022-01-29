@@ -9,6 +9,7 @@
           type="text"
           class="form-control"
           id="name"
+          name="name"
           placeholder="Ingrese su nombre..."
         />
       </div>
@@ -18,6 +19,7 @@
           type="text"
           class="form-control"
           id="last_name"
+          name="last_name"
           placeholder="Ingrese su apellido..."
         />
       </div>
@@ -27,6 +29,7 @@
           type="text"
           class="form-control"
           id="tel"
+          name="tel"
           placeholder="Ingrese su Télefono con el formato +54 380 1234567"
         />
       </div>
@@ -36,6 +39,7 @@
           type="text"
           class="form-control"
           id="E-mail"
+          name="email"
           placeholder="Ingrese su email..."
         />
       </div>
@@ -44,10 +48,10 @@
     <fieldset>
       <legend>Datos de oferta</legend>
       <div class="mb-3">
-        <select class="form-select" aria-label="Tipo de oferta">
-          <option selected>Elija una opción</option>
-          <option value="1">Puesto de trabajo</option>
-          <option value="2">Desarrollo freelance</option>
+        <select class="form-select" aria-label="Tipo de oferta" name="tipo">
+          <option selected value="2">Elija una opción</option>
+          <option value="0">Puesto de trabajo</option>
+          <option value="1">Desarrollo freelance</option>
         </select>
       </div>
       <div class="mb-3">
@@ -56,6 +60,7 @@
           type="text"
           class="form-control"
           id="company_name"
+          name="company_name"
           placeholder="Ingrese el nombre de su empresa..."
         />
       </div>
@@ -64,12 +69,16 @@
         <input
           type="text"
           class="form-control"
-          id="descriptsion"
+          id="description"
+          name="descripcion"
           placeholder="Ingrese una breve descripción del trabajo..."
         />
       </div>
     </fieldset>
-    <input type="submit" value="Enviar" class="btn-primary" />
-    <input type="button" value="Cancelar" class="btn-danger" />
+    <div class="container-fluid row">
+      <input type="submit" value="Enviar" class="btn btn-success col-3" />
+      <div class="col-6"></div>
+      <input type="button" value="Cancelar" class="btn btn-danger col-3" />
+    </div>
   </form>
 </div>

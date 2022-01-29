@@ -13,7 +13,7 @@ app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 
 //! RUTEO
-app.use("/home", require("./src/routes/home"));
+app.use("/", require("./src/routes/home"));
 app.use("/ofertas", require("./src/routes/oferta")); //TODO
 //app.use("/contact", require("./routes/contact")); //TODO
 

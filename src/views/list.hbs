@@ -1,9 +1,12 @@
-<div class="container-fluid">
+<div class="container-fluid row m-1">
   {{#each data}}
-    <div class="card col-4">
+   <div class="card col-4 mt-3 ml-1 bg-dark">
+      <a href="/ofertas/search/{{id_oferta}}">
       <div class="card-header bg-primary">
-        <h5 class="card-title text-white">{{company_name}} </h5></div>
-      <div class="card-body">
+        <h5 class="card-title text-white">{{company_name}}
+          -
+          {{#if tipo}} Desarrollo freelance {{else}}Puesto de trabajo{{/if}}</h5></div></a>
+      <div {{#if estado}}class="card-body bg-success"{{else}}class="card-body bg-warning"{{/if}}>
         <p class="card-text h6">{{last_name}}, {{name}} </p>
         <p class="card-text h6">{{email}} - {{tel}}</p>
         <p class="card-text">{{descripcion}}</p>

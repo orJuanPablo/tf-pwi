@@ -15,8 +15,10 @@ knex.schema.hasTable("ofertas").then(function (exists) {
     return knex.schema
       .createTable("ofertas", function (t) {
         t.increments("id").primary();
+        t.string("company_name", 100);
         t.integer("contacto", 11);
-        t.integer("tipo", 1);
+        t.boolean("tipo");
+        t.boolean("estado")
         t.string("descripcion", 250);
       })
       .then(() => console.log("success!! table: ofertas has ben created"))
@@ -30,7 +32,6 @@ knex.schema.hasTable("contactos").then(function (exists) {
     return knex.schema
       .createTable("contactos", function (t) {
         t.increments("id").primary();
-        t.string("company_name", 100);
         t.string("name", 100);
         t.string("last_name", 100);
         t.string("email", 100);
