@@ -9,7 +9,7 @@ const path = require("path");
 
 //! MIDDLEWARES
 app.use(express.json());
-app.use(express.static("src/views/img/ProfilePicture.png"));
+app.use("/static", express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: false }));
 
 //! RUTEO
