@@ -66,12 +66,10 @@ const create = async (req, res) => {
       if (chk.length > 0) {
         oferta.contacto = chk[0].id_contacto;
       } else {
-        const id_contacto = await knex("contactos").insert(contacto)[0];
+        const id_contacto = await knex("contactos").insert(contacto);
         oferta.contacto = id_contacto;
       }
-
       const ins = await knex("ofertas").insert(oferta);
-
       if (ins.length > 0) {
         await mail({ email, tel, name, last_name, company_name });
         res.render("index", success);
