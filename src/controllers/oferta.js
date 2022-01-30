@@ -35,8 +35,19 @@ const list = (req, res) => {
       res.render("list", { data });
     });
 };
-const search = (req, res) => {
-  res.send("search");
+const search = async (req, res) => {
+  const id = req.params.id;
+  let oferta = {};
+  try {
+    oferta = await knex
+      .from("ofertas")
+      .innerJoin("contactos", "ofertas.contacto", "contactos.id_contacto")
+      .where({ id_oferta: id });
+    res.render("contacto", oferta);
+  } catch (error) {
+    console.error(error);
+    res.render("index", err);
+  }
 };
 const create = async (req, res) => {
   const { name, last_name, email, tel, tipo, company_name, descripcion } =
