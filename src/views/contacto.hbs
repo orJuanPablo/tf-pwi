@@ -1,9 +1,20 @@
-<div class="card-container bg-white">
-  <div class="row text-white">
+<div class="card-container text-white">
+  <div class="row text-primary m-3">
     <h1>{{{company_name}}}</h1>
-  </div><div class="row">
+  </div><div class="row m-3">
     <p>Contacto: {{{last_name}}}, {{{name}}}</p>
     <p>Email: {{{email}}}</p>
     <p>Teléfono: {{{tel}}}</p>
-    <p>Teléfono: {{{tel}}}</p></div>
+  </div>
+  <div class="row m-1"><p>{{{descripcion}}}</p></div>
+  <div class="row m-2 justify-content-around">
+    <button
+      onclick="marcarOferta({{{id_oferta}}})"
+      class="btn btn-success col-2"
+    ><i class="fas fa-check"></i></button>
+    <button
+      onclick="deleteOferta({{{id_oferta}}})"
+      class="btn btn-danger col-2"
+    ><i class="fas fa-trash"></i></button>
+  </div>
 </div>

@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 //! RUTEO
 app.use("/", require("./src/routes/home"));
 app.use("/ofertas", require("./src/routes/oferta")); //TODO
-//app.use("/contact", require("./routes/contact")); //TODO
+app.use("*", require("./src/routes/fourOfour"));
 
 //! HANDLEBARS CONFIG
 app.set("view engine", "hbs");

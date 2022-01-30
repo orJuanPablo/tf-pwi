@@ -2,7 +2,6 @@ const knex = require("../config/db");
 const mailer = require("nodemailer");
 
 const err = {
-  titulo: "orJuanPablo",
   warning: true,
   alertTitle: "oops ha ocurrido un error inesperado",
   alertText:
@@ -11,7 +10,6 @@ const err = {
 };
 
 const success = {
-  titulo: "orJuanPablo",
   warning: false,
   alertTitle: "La solicitud ha sido enviada con éxito",
   alertText: `La solicitud ha sido recibida con éxito revise su casilla de correo para más información.`,
@@ -19,7 +17,6 @@ const success = {
 };
 
 const warning = {
-  titulo: "orJuanPablo",
   warning: true,
   alertTitle: "oops ha ocurrido un error inesperado",
   alertText:
@@ -37,13 +34,12 @@ const list = (req, res) => {
 };
 const search = async (req, res) => {
   const id = req.params.id;
-  let oferta = {};
   try {
-    oferta = await knex
+    const oferta = await knex
       .from("ofertas")
       .innerJoin("contactos", "ofertas.contacto", "contactos.id_contacto")
       .where({ id_oferta: id });
-    res.render("contacto", oferta);
+    res.render("contacto", oferta[0]);
   } catch (error) {
     console.error(error);
     res.render("index", err);
@@ -86,11 +82,25 @@ const create = async (req, res) => {
     }
   }
 };
-const update = (req, res) => {
-  res.send("update");
+const update = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await knex("ofertas").where("id_oferta", id).update({ estado: "1" });
+    res.send({ visto: id });
+  } catch (error) {
+    console.error(error);
+    res.render("index", err);
+  }
 };
-const eliminar = (req, res) => {
-  res.send("eliminar");
+const eliminar = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await knex("ofertas").where("id_oferta", id).del();
+    res.json({ del: id });
+  } catch (error) {
+    console.error(error);
+    res.render("index", err);
+  }
 };
 module.exports = {
   list,
