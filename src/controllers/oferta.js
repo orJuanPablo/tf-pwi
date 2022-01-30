@@ -1,6 +1,7 @@
 const knex = require("../config/db");
-const mail = require("../config/mailer");
-const error = {
+const mailer = require("nodemailer");
+
+const err = {
   titulo: "orJuanPablo",
   warning: true,
   alertTitle: "oops ha ocurrido un error inesperado",
@@ -8,6 +9,7 @@ const error = {
     "Estamos teniendo problemas a la hora de responder a su solicitud por favor intente de nuevo más tarde.",
   success: false,
 };
+
 const success = {
   titulo: "orJuanPablo",
   warning: false,
@@ -15,6 +17,7 @@ const success = {
   alertText: `La solicitud ha sido recibida con éxito revise su casilla de correo para más información.`,
   success: true,
 };
+
 const warning = {
   titulo: "orJuanPablo",
   warning: true,
@@ -23,6 +26,7 @@ const warning = {
     "Por favor revise que todos los datos del formulario esten completos.",
   success: false,
 };
+
 const list = (req, res) => {
   knex
     .from("ofertas")
@@ -34,7 +38,7 @@ const list = (req, res) => {
 const search = (req, res) => {
   res.send("search");
 };
-const create = (req, res) => {
+const create = async (req, res) => {
   const { name, last_name, email, tel, tipo, company_name, descripcion } =
     req.body;
   if (
@@ -50,27 +54,25 @@ const create = (req, res) => {
   } else {
     const contacto = { name, last_name, email, tel };
     const oferta = { company_name, tipo, descripcion, contacto: "" };
-    knex
-      .select()
-      .table("contactos")
-      .where("email", email)
-      .then((chk) => {
-        if (chk.length > 0) {
-          oferta.contacto = chk[0].id;
-          knex("ofertas").insert(oferta).then(res.render("index", success));
-        } else {
-          knex("contactos")
-            .insert(contacto)
-            .then((data) => {
-              oferta.contacto = data[0];
-              knex("ofertas").insert(oferta).then(res.render("index", success));
-            });
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        res.render("index", error);
-      });
+    try {
+      const chk = await knex.select().table("contactos").where("email", email);
+      if (chk.length > 0) {
+        oferta.contacto = chk[0].id_contacto;
+      } else {
+        const id_contacto = await knex("contactos").insert(contacto)[0];
+        oferta.contacto = id_contacto;
+      }
+
+      const ins = await knex("ofertas").insert(oferta);
+
+      if (ins.length > 0) {
+        await mail({ email, tel, name, last_name, company_name });
+        res.render("index", success);
+      }
+    } catch (error) {
+      console.error(error);
+      res.render("index", err);
+    }
   }
 };
 const update = (req, res) => {
@@ -85,4 +87,32 @@ module.exports = {
   create,
   update,
   eliminar,
+};
+const mail = async (datos) => {
+  let { email, tel, name, last_name, company_name } = datos;
+
+  let transporter = mailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: { user: "juanp.ocampo.22@gmail.com", pass: process.env.MAIL_PASS },
+  });
+
+  let info = await transporter.sendMail({
+    from: `juanp.ocampo.22@gmail.com `,
+    to: `<${email}>`,
+    subject: `Respuesta a contacto de ${company_name}`,
+    html: `<h1>Muchas gracias por comunicarte conmigo: </h1></br>
+     <p>Hola ${last_name}, ${name}.</p>
+     <p>Muchas Gracias por comunicarte conmigo y tenerme en cuenta en tu búsqueda,
+     intentaré comunicarme contigo lo más pronto posible utilizando la información de contacto que suministraste</p>
+     <p>Mail: ${email}</p>
+     <p>Teléfono: ${tel}</p>
+     <p>Saludos.</p>
+     <footer class="container-fluid p-5 bg-primary text-white text-center">
+      <p>Proyecto de WEB CV con soporte para contacto y autorespuesta a través de mail</p>
+      <p>Desarrollado por Juan Pablo Ocampo Rombolá < orJuanPablo ></p>
+     </footer>
+      `,
+  });
 };
