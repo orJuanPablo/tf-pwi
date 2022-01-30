@@ -14,7 +14,7 @@ knex.schema.hasTable("ofertas").then(function (exists) {
   if (!exists) {
     return knex.schema
       .createTable("ofertas", function (t) {
-        t.increments("id").primary();
+        t.increments("id_oferta").primary();
         t.string("company_name", 100);
         t.integer("contacto", 11);
         t.boolean("tipo");
@@ -31,7 +31,7 @@ knex.schema.hasTable("contactos").then(function (exists) {
   if (!exists) {
     return knex.schema
       .createTable("contactos", function (t) {
-        t.increments("id").primary();
+        t.increments("id_contacto").primary();
         t.string("name", 100);
         t.string("last_name", 100);
         t.string("email", 100);
