@@ -2,8 +2,8 @@ const express = require("express");
 const res = require("express/lib/response");
 require("dotenv").config();
 const app = express();
-const port = process.env.DEFAULT_PORT || 3000;
-const host = process.env.DEFAULT_HOST || "http://localhost";
+const port = process.env.PORT || 3000;
+const host = process.env.HOST || "http://localhost";
 const hbs = require("hbs");
 const path = require("path");
 
