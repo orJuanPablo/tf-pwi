@@ -25,12 +25,17 @@ const warning = {
 };
 
 const list = (req, res) => {
-  knex
-    .from("ofertas")
-    .innerJoin("contactos", "ofertas.contacto", "contactos.id_contacto")
-    .then((data) => {
-      res.render("list", { data });
-    });
+  try {
+    knex
+      .from("ofertas")
+      .innerJoin("contactos", "ofertas.contacto", "contactos.id_contacto")
+      .then((data) => {
+        res.render("list", { data });
+      });
+  } catch (error) {
+    console.error(error);
+    res.render("index", err);
+  }
 };
 const search = async (req, res) => {
   const id = req.params.id;
